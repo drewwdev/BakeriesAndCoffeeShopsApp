@@ -2,6 +2,8 @@
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+
 
 namespace BakeriesAndCoffeeShopsApp.Models
 {
@@ -14,6 +16,7 @@ namespace BakeriesAndCoffeeShopsApp.Models
         private static bool LOG_SQL_STATEMENTS_IN_DEVELOPMENT = false;
 
         // Add database tables here
+        public DbSet<BakeryAndCoffeeShop> BakeriesAndCoffeeShops { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

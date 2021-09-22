@@ -7,4 +7,272 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  background-color: #006d77;
+}
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.mainheader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+  text-align: center;
+
+  border-bottom: 0.1rem solid;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+
+  background-color: #e29578;
+
+  & p {
+    font-size: 3rem;
+    margin: 0;
+  }
+}
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.homemain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+}
+.viewalldiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.viewallmain {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  background-color: #83c5be;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  width: 17rem;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+
+  border: 0.1rem solid;
+  width: 17rem;
+  padding: 0.5rem;
+  margin: 0.3rem;
+
+  background-color: #83c5be;
+  border-radius: 0.3rem;
+}
+.add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 0.1rem solid;
+  width: 16rem;
+  padding: 1rem;
+  margin: 0.3rem;
+
+  background-color: #83c5be;
+  border-radius: 0.3rem;
+
+  & button {
+    width: 17rem;
+    height: 2rem;
+    background-color: #e29578;
+    border-radius: 0.3rem;
+    box-shadow: 0.1rem 0.1rem;
+    border-color: #006d77;
+  }
+}
+.nearby {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0.1rem solid;
+  width: 16rem;
+  padding: 1rem;
+  margin: 0.3rem;
+
+  background-color: #83c5be;
+  border-radius: 0.3rem;
+}
+.shop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 16rem;
+  padding: 1rem 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.3rem;
+
+  background-color: #006d77;
+  border: 0.1rem solid;
+
+  & .entryinfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  & p {
+    margin: 0rem;
+  }
+
+  & button {
+    width: 5rem;
+    height: 2rem;
+
+    background-color: #e29578;
+    border-radius: 0.3rem;
+    box-shadow: 0.1rem 0.1rem;
+
+    border-color: #006d77;
+  }
+}
+.shopinfo {
+  display: flex;
+  flex-direction: row;
+}
+.mainimage {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.directions {
+  width: 17rem;
+  height: 2rem;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+
+  border-top: 0.1rem solid;
+  padding: 0.3rem;
+
+  background-color: #e29578;
+
+  & img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+.singleentry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0.1rem solid;
+  width: 17rem;
+  padding: 1rem;
+  margin: 0.3rem;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  position: relative;
+
+  background-color: #83c5be;
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+.singleentrypageimage {
+  border-radius: 0.3rem;
+  width: 17rem;
+}
+.directionsandshare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.entryimages {
+  height: 17rem;
+  overflow: scroll;
+}
+.updatedelete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 17rem;
+
+  & button {
+    width: 5rem;
+    height: 2rem;
+
+    background-color: #e29578;
+    border-radius: 0.3rem;
+    box-shadow: 0.1rem 0.1rem;
+
+    border-color: #006d77;
+  }
+}
+.viewallbutton {
+  width: 17rem;
+  height: 2rem;
+  background-color: #e29578;
+  border-radius: 0.3rem;
+  box-shadow: 0.1rem 0.1rem;
+  border-color: #006d77;
+}
+.addentrymain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.addentry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: #83c5be;
+  margin: 0.3rem;
+  margin-top: 11rem;
+  border-radius: 0.3rem;
+  border: 0.1rem solid;
+  width: 20rem;
+}
+.entryinput {
+  width: 19rem;
+  margin: 0.5rem;
+}
+.entrytype {
+  width: 15rem;
+  margin: 0.5rem;
+  background-color: #e29578;
+  border-radius: 0.3rem;
+  border-color: #006d77;
+}
+.entrybutton {
+  width: 15rem;
+  height: 2rem;
+  margin: 0.5rem;
+  background-color: #e29578;
+  border-radius: 0.3rem;
+  box-shadow: 0.1rem 0.1rem;
+  border-color: #006d77;
 }
