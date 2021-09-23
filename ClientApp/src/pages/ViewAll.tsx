@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { BakeryAndCoffeeShopType } from '../types'
 
 export function ViewAll() {
+  const [filterText, setFilterText] = useState('')
+
   const { data: bakeriesAndCoffeeShops = [] } = useQuery<
     BakeryAndCoffeeShopType[]
-  >('bakeriesAndCoffeeShops', async function () {
-    const response = await fetch('/api/BakeriesAndCoffeeShops')
+  >(['bakeriesAndCoffeeShops', filterText], async function () {
+    const response = await fetch(
+      filterText.length === 0
+        ? '/api/BakeriesAndCoffeeShops'
+        : `/api/BakeriesAndCoffeeShops?filter=${filterText}`
+    )
 
     return response.json()
   })
@@ -21,7 +27,13 @@ export function ViewAll() {
       <div className="viewalldiv">
         <main className="viewallmain">
           Type a name or city to filter
-          <input type="search"></input>
+          <input
+            type="search"
+            value={filterText}
+            onChange={function (event) {
+              setFilterText(event.target.value)
+            }}
+          ></input>
           <label htmlFor="options">Choose an option:</label>
           <select>
             <option>Bakery</option>

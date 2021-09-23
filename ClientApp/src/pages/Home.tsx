@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 
 import { BakeryAndCoffeeShopType } from '../types'
 
 export function Home() {
+  const [filterText, setFilterText] = useState('')
+
   const { data: bakeriesAndCoffeeShops = [] } = useQuery<
     BakeryAndCoffeeShopType[]
-  >('bakeriesAndCoffeeShops', async function () {
-    const response = await fetch('/api/BakeriesAndCoffeeShops')
+  >(['bakeriesAndCoffeeShops', filterText], async function () {
+    const response = await fetch(
+      filterText.length === 0
+        ? '/api/BakeriesAndCoffeeShops'
+        : `/api/BakeriesAndCoffeeShops?filter=${filterText}`
+    )
 
     return response.json()
   })
@@ -22,7 +28,13 @@ export function Home() {
       <main className="homemain">
         <div className="search">
           <header>Search by name/ city/ type</header>
-          <input type="search"></input>
+          <input
+            value={filterText}
+            onChange={function (event) {
+              setFilterText(event.target.value)
+            }}
+            type="search"
+          ></input>
         </div>
         <div className="add">
           <button>Add a new bakery/ coffee shop</button>
