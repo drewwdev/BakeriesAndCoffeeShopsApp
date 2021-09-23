@@ -1,10 +1,10 @@
 import React from 'react'
-import { Home } from './pages/Home'
+import { ViewAll } from './pages/ViewAll'
 
 export function App() {
   return (
     <div>
-      <Home />
+      <ViewAll />
       <footer>
         <img className="github" src="src/images/Octicat.svg" />
       </footer>

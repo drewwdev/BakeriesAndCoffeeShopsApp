@@ -1,6 +1,16 @@
 import React from 'react'
+import { useQuery } from 'react-query'
+import { BakeryAndCoffeeShopType } from '../types'
 
 export function ViewAll() {
+  const { data: bakeriesAndCoffeeShops = [] } = useQuery<
+    BakeryAndCoffeeShopType[]
+  >('bakeriesAndCoffeeShops', async function () {
+    const response = await fetch('/api/BakeriesAndCoffeeShops')
+
+    return response.json()
+  })
+
   return (
     <div>
       <div className="home">
@@ -18,62 +28,24 @@ export function ViewAll() {
             <option>Coffee Shop</option>
             <option>Both</option>
           </select>
-          <div className="shop">
-            <div className="entryinfo">
-              <img
-                className="mainimage"
-                src="src/images/simple-house-icon.png"
-              />
-              <div>
-                <p>Name</p>
-                <p>City</p>
-                <p>Type</p>
+          {bakeriesAndCoffeeShops.map(function (bakeryAndCoffeeShop) {
+            return (
+              <div className="shop" key={bakeryAndCoffeeShop.id}>
+                <div className="shopinfo">
+                  <img
+                    className="mainimage"
+                    src="src/images/simple-house-icon.png"
+                  />
+                  <div>
+                    <p>{bakeryAndCoffeeShop.name}</p>
+                    <p>{bakeryAndCoffeeShop.city}</p>
+                    <p>{bakeryAndCoffeeShop.type}</p>
+                  </div>
+                </div>
+                <button>Directions</button>
               </div>
-            </div>
-            <button>Directions</button>
-          </div>
-          <div className="shop">
-            <div className="entryinfo">
-              <img
-                className="mainimage"
-                src="src/images/simple-house-icon.png"
-              />
-              <div>
-                <p>Name</p>
-                <p>City</p>
-                <p>Type</p>
-              </div>
-            </div>
-            <button>Directions</button>
-          </div>
-          <div className="shop">
-            <div className="entryinfo">
-              <img
-                className="mainimage"
-                src="src/images/simple-house-icon.png"
-              />
-              <div>
-                <p>Name</p>
-                <p>City</p>
-                <p>Type</p>
-              </div>
-            </div>
-            <button>Directions</button>
-          </div>
-          <div className="shop">
-            <div className="entryinfo">
-              <img
-                className="mainimage"
-                src="src/images/simple-house-icon.png"
-              />
-              <div>
-                <p>Name</p>
-                <p>City</p>
-                <p>Type</p>
-              </div>
-            </div>
-            <button>Directions</button>
-          </div>
+            )
+          })}
         </main>
       </div>
     </div>
