@@ -12,8 +12,6 @@ export function Home() {
     return response.json()
   })
 
-  console.log(bakeriesAndCoffeeShops)
-
   return (
     <div>
       <div className="home">
@@ -31,24 +29,26 @@ export function Home() {
         </div>
         <div className="nearby">
           <header>Nearby bakeries/ coffee shops</header>
-          {bakeriesAndCoffeeShops.map(function (bakeryAndCoffeeShop) {
-            return (
-              <div className="shop" key={bakeryAndCoffeeShop.id}>
-                <div className="shopinfo">
-                  <img
-                    className="mainimage"
-                    src="src/images/simple-house-icon.png"
-                  />
-                  <div>
-                    <p>{bakeryAndCoffeeShop.name}</p>
-                    <p>{bakeryAndCoffeeShop.city}</p>
-                    <p>{bakeryAndCoffeeShop.type}</p>
+          {bakeriesAndCoffeeShops
+            .slice(0, 3)
+            .map(function (bakeryAndCoffeeShop) {
+              return (
+                <div className="shop" key={bakeryAndCoffeeShop.id}>
+                  <div className="shopinfo">
+                    <img
+                      className="mainimage"
+                      src="src/images/simple-house-icon.png"
+                    />
+                    <div>
+                      <p>{bakeryAndCoffeeShop.name}</p>
+                      <p>{bakeryAndCoffeeShop.city}</p>
+                      <p>{bakeryAndCoffeeShop.type}</p>
+                    </div>
                   </div>
+                  <button>Directions</button>
                 </div>
-                <button>Directions</button>
-              </div>
-            )
-          })}
+              )
+            })}
           <button className="viewallbutton">
             View all bakeries and coffee shops
           </button>
