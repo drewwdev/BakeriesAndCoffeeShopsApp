@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace BakeriesAndCoffeeShopsApp.Models
 {
@@ -9,13 +10,11 @@ namespace BakeriesAndCoffeeShopsApp.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "You must provide a name.")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "You must provide an address.")]
-        public string Address { get; set; }
-        [Required(ErrorMessage = "You must say whether it is a bakery or not.")]
-        public bool Bakery { get; set; }
-        [Required(ErrorMessage = "You must say whether it is a coffee shop or not.")]
-        public bool CoffeeShop { get; set; }
+        [Required(ErrorMessage = "You must provide a city.")]
+        public string City { get; set; }
+        [Required(ErrorMessage = "You must provide a type.")]
+        public string Type { get; set; }
         public DateTime DateAdded { get; set; }
-        public int MainImage { get; set; }
+        public string MainImage { get; set; }
     }
 }

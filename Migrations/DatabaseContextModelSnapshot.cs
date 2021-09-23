@@ -26,23 +26,21 @@ namespace BakeriesAndCoffeeShopsApp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Address")
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<bool>("Bakery")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("CoffeeShop")
-                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("MainImage")
-                        .HasColumnType("integer");
+                    b.Property<string>("MainImage")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 

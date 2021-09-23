@@ -6,7 +6,7 @@ export function App() {
     <div>
       <Home />
       <footer>
-        <img src="src/components/images/Octicat.svg" />
+        <img className="github" src="src/images/Octicat.svg" />
       </footer>
     </div>
   )

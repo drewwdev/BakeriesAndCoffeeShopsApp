@@ -9,6 +9,7 @@ namespace BakeriesAndCoffeeShopsApp.Models
 {
     public partial class DatabaseContext : DbContext
     {
+        
         // Change this if you want to have a different database name in development
         private static string DEVELOPMENT_DATABASE_NAME = "BakeriesAndCoffeeShopsAppDatabase";
 
@@ -17,7 +18,6 @@ namespace BakeriesAndCoffeeShopsApp.Models
 
         // Add database tables here
         public DbSet<BakeryAndCoffeeShop> BakeriesAndCoffeeShops { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

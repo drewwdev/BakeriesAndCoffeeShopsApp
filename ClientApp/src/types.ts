@@ -1,9 +1,8 @@
-export type BakeriesAndCoffeeShopType = {
+export type BakeryAndCoffeeShopType = {
   id: number
   name: string
-  address: string
-  bakery: boolean
-  coffeeShop: boolean
+  city: string
+  type: string
   dateAdded: Date
-  mainImage: number
+  mainImage: string
 }

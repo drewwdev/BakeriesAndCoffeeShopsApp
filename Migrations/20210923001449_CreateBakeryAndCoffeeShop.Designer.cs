@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BakeriesAndCoffeeShopsApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210922215312_CreateBakeryAndCoffeeShop")]
+    [Migration("20210923001449_CreateBakeryAndCoffeeShop")]
     partial class CreateBakeryAndCoffeeShop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,23 +28,21 @@ namespace BakeriesAndCoffeeShopsApp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Address")
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<bool>("Bakery")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("CoffeeShop")
-                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("MainImage")
-                        .HasColumnType("integer");
+                    b.Property<string>("MainImage")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 

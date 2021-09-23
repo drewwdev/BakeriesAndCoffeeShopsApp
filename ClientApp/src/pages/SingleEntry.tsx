@@ -12,7 +12,7 @@ export function SingleEntry() {
         <div className="singleentry">
           <img
             className="singleentrypageimage"
-            src="src/components/images/simple-house-icon.png"
+            src="src/images/simple-house-icon.png"
           />
           <div className="shop">
             <div className="entryinfo">
@@ -32,15 +32,15 @@ export function SingleEntry() {
           <div className="entryimages">
             <img
               className="singleentrypageimage"
-              src="src/components/images/simple-house-icon.png"
+              src="src/images/simple-house-icon.png"
             />
             <img
               className="singleentrypageimage"
-              src="src/components/images/simple-house-icon.png"
+              src="src/images/simple-house-icon.png"
             />
             <img
               className="singleentrypageimage"
-              src="src/components/images/simple-house-icon.png"
+              src="src/images/simple-house-icon.png"
             />
           </div>
           <nav className="updatedelete">

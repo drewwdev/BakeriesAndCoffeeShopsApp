@@ -1,4 +1,7 @@
 {
   "name": "BakeriesAndCoffeeShopsApp",
-  "private": "true"
+  "private": "true",
+  "dependencies": {
+    "react-query": "^3.24.4"
+  }
 }

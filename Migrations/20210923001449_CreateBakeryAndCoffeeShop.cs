@@ -15,11 +15,10 @@ namespace BakeriesAndCoffeeShopsApp.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    Bakery = table.Column<bool>(type: "boolean", nullable: false),
-                    CoffeeShop = table.Column<bool>(type: "boolean", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: false),
+                    Type = table.Column<string>(type: "text", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    MainImage = table.Column<int>(type: "integer", nullable: false)
+                    MainImage = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

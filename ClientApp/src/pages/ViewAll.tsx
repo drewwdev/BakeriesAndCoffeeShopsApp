@@ -22,7 +22,7 @@ export function ViewAll() {
             <div className="entryinfo">
               <img
                 className="mainimage"
-                src="src/components/images/simple-house-icon.png"
+                src="src/images/simple-house-icon.png"
               />
               <div>
                 <p>Name</p>
@@ -36,7 +36,7 @@ export function ViewAll() {
             <div className="entryinfo">
               <img
                 className="mainimage"
-                src="src/components/images/simple-house-icon.png"
+                src="src/images/simple-house-icon.png"
               />
               <div>
                 <p>Name</p>
@@ -50,7 +50,7 @@ export function ViewAll() {
             <div className="entryinfo">
               <img
                 className="mainimage"
-                src="src/components/images/simple-house-icon.png"
+                src="src/images/simple-house-icon.png"
               />
               <div>
                 <p>Name</p>
@@ -64,7 +64,7 @@ export function ViewAll() {
             <div className="entryinfo">
               <img
                 className="mainimage"
-                src="src/components/images/simple-house-icon.png"
+                src="src/images/simple-house-icon.png"
               />
               <div>
                 <p>Name</p>
