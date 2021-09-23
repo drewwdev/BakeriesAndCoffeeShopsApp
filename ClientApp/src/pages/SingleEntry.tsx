@@ -1,15 +1,6 @@
 import React from 'react'
-import { BakeryAndCoffeeShopType } from '../types'
 
-export function SingleEntry({
-  bakeryAndCoffeeShop,
-}: {
-  bakeryAndCoffeeShop: BakeryAndCoffeeShopType
-}) {
-  if (bakeryAndCoffeeShop === null) {
-    return null
-  }
-
+export function SingleEntry() {
   return (
     <div>
       <div className="home">
@@ -26,10 +17,10 @@ export function SingleEntry({
           <div className="shop">
             <div className="entryinfo">
               <div>
-                <p>{bakeryAndCoffeeShop.name}</p>
-                <p>{bakeryAndCoffeeShop.city}</p>
-                <p>{bakeryAndCoffeeShop.type}</p>
-                <p>{bakeryAndCoffeeShop.dateAdded}</p>
+                <p>name</p>
+                <p>city</p>
+                <p>type</p>
+                <p>dateAdded</p>
                 <button>Add image</button>
               </div>
             </div>
