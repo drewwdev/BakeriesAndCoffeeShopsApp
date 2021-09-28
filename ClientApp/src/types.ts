@@ -1,8 +1,7 @@
 export type BakeryAndCoffeeShopType = {
-  id: number
+  id: number | undefined
   name: string
   city: string
   type: string
-  dateAdded: Date
   mainImage: string
 }

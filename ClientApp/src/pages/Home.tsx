@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
+import { Link } from 'react-router-dom'
 
 import { BakeryAndCoffeeShopType } from '../types'
 
@@ -37,7 +38,12 @@ export function Home() {
           ></input>
         </div>
         <div className="add">
-          <button>Add a new bakery/ coffee shop</button>
+          <Link
+            to="/newentry"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <button>Add a new bakery/ coffee shop</button>
+          </Link>
         </div>
         <div className="nearby">
           <header>Nearby bakeries/ coffee shops</header>
@@ -45,25 +51,36 @@ export function Home() {
             .slice(0, 3)
             .map(function (bakeryAndCoffeeShop) {
               return (
-                <div className="shop" key={bakeryAndCoffeeShop.id}>
-                  <div className="shopinfo">
-                    <img
-                      className="mainimage"
-                      src="src/images/simple-house-icon.png"
-                    />
-                    <div>
-                      <p>{bakeryAndCoffeeShop.name}</p>
-                      <p>{bakeryAndCoffeeShop.city}</p>
-                      <p>{bakeryAndCoffeeShop.type}</p>
+                <Link
+                  to={`/entry/${bakeryAndCoffeeShop.id}`}
+                  key={bakeryAndCoffeeShop.id}
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  <div className="shop">
+                    <div className="shopinfo">
+                      <img
+                        className="mainimage"
+                        src="../src/images/simple-house-icon.png"
+                      />
+                      <div>
+                        <p>{bakeryAndCoffeeShop.name}</p>
+                        <p>{bakeryAndCoffeeShop.city}</p>
+                        <p>{bakeryAndCoffeeShop.type}</p>
+                      </div>
                     </div>
+                    <button>Directions</button>
                   </div>
-                  <button>Directions</button>
-                </div>
+                </Link>
               )
             })}
-          <button className="viewallbutton">
-            View all bakeries and coffee shops
-          </button>
+          <Link
+            to="/allentries"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <button className="viewallbutton">
+              View all bakeries and coffee shops
+            </button>
+          </Link>
         </div>
       </main>
     </div>

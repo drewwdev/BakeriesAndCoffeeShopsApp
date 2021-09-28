@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
+import { Link } from 'react-router-dom'
 import { BakeryAndCoffeeShopType } from '../types'
 
 export function ViewAll() {
@@ -21,7 +22,10 @@ export function ViewAll() {
     <div>
       <div className="home">
         <header className="mainheader">
-          <p>⌂</p> Bakeries and Coffee Shops Database
+          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <p>⌂</p>
+          </Link>
+          Home
         </header>
       </div>
       <div className="viewalldiv">
@@ -46,7 +50,7 @@ export function ViewAll() {
                 <div className="shopinfo">
                   <img
                     className="mainimage"
-                    src="src/images/simple-house-icon.png"
+                    src="../src/images/simple-house-icon.png"
                   />
                   <div>
                     <p>{bakeryAndCoffeeShop.name}</p>

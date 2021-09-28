@@ -14,7 +14,6 @@ namespace BakeriesAndCoffeeShopsApp.Models
         public string City { get; set; }
         [Required(ErrorMessage = "You must provide a type.")]
         public string Type { get; set; }
-        public DateTime DateAdded { get; set; }
         public string MainImage { get; set; }
     }
 }
