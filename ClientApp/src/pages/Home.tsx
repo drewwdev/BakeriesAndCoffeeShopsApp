@@ -1,20 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
 import { BakeryAndCoffeeShopType } from '../types'
 
 export function Home() {
-  const [filterText, setFilterText] = useState('')
-
   const { data: bakeriesAndCoffeeShops = [] } = useQuery<
     BakeryAndCoffeeShopType[]
-  >(['bakeriesAndCoffeeShops', filterText], async function () {
-    const response = await fetch(
-      filterText.length === 0
-        ? '/api/BakeriesAndCoffeeShops'
-        : `/api/BakeriesAndCoffeeShops?filter=${filterText}`
-    )
+  >(['bakeriesAndCoffeeShops'], async function () {
+    const response = await fetch('/api/BakeriesAndCoffeeShops')
 
     return response.json()
   })
@@ -28,14 +22,14 @@ export function Home() {
       </div>
       <main className="homemain">
         <div className="search">
-          <header>Search by name/ city/ type</header>
-          <input
-            value={filterText}
-            onChange={function (event) {
-              setFilterText(event.target.value)
-            }}
-            type="search"
-          ></input>
+          <Link
+            to="/allentries"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <button className="viewallbutton">
+              View all bakeries and coffee shops
+            </button>
+          </Link>
         </div>
         <div className="add">
           <Link
@@ -46,7 +40,7 @@ export function Home() {
           </Link>
         </div>
         <div className="nearby">
-          <header>Nearby bakeries/ coffee shops</header>
+          <header>Latest bakeries/ coffee shops</header>
           {bakeriesAndCoffeeShops
             .slice(0, 3)
             .map(function (bakeryAndCoffeeShop) {
@@ -68,19 +62,10 @@ export function Home() {
                         <p>{bakeryAndCoffeeShop.type}</p>
                       </div>
                     </div>
-                    <button>Directions</button>
                   </div>
                 </Link>
               )
             })}
-          <Link
-            to="/allentries"
-            style={{ color: 'inherit', textDecoration: 'none' }}
-          >
-            <button className="viewallbutton">
-              View all bakeries and coffee shops
-            </button>
-          </Link>
         </div>
       </main>
     </div>

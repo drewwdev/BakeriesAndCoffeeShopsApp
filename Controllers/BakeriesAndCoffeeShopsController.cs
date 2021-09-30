@@ -38,7 +38,7 @@ namespace BakeriesAndCoffeeShopsApp.Controllers
         }
         else
         {
-            return await _context.BakeriesAndCoffeeShops.Where(BakeryAndCoffeeShop => BakeryAndCoffeeShop.Name.ToLower().Contains(filter.ToLower()) | BakeryAndCoffeeShop.City.ToLower().Contains(filter.ToLower())).ToListAsync();
+            return await _context.BakeriesAndCoffeeShops.Where(BakeryAndCoffeeShop => BakeryAndCoffeeShop.Name.ToLower().Contains(filter.ToLower()) | BakeryAndCoffeeShop.Type.ToLower().Contains(filter.ToLower()) | BakeryAndCoffeeShop.City.ToLower().Contains(filter.ToLower())).ToListAsync();
         }
             // Uses the database context in `_context` to request all of the BakeriesAndCoffeeShops, sort
             // them by row id and return them as a JSON array.

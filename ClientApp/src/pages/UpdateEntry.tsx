@@ -1,20 +1,12 @@
-import React, { useState } from 'react'
-import { useMutation } from 'react-query'
-import { useHistory } from 'react-router'
+import React, { useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { BakeryAndCoffeeShopType } from '../types'
 
-async function submitNewEntry(entryToCreate: BakeryAndCoffeeShopType) {
-  const response = await fetch('/api/BakeriesAndCoffeeShops', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(entryToCreate),
-  })
+export function UpdateEntry() {
+  const { id } = useParams<{ id: string }>()
+  const history = useHistory()
 
-  return response.json()
-}
-
-export function AddEntry() {
   const [newEntry, setNewEntry] = useState<BakeryAndCoffeeShopType>({
     id: undefined,
     name: '',
@@ -23,12 +15,16 @@ export function AddEntry() {
     mainImage: '',
   })
 
-  const history = useHistory()
-  const createEntry = useMutation(submitNewEntry, {
-    onSuccess: function () {
-      history.push('/')
-    },
-  })
+  useEffect(() => {
+    async function fetchEntry() {
+      const response = await fetch(`/api/BakeriesAndCoffeeShops/${id}`)
+
+      if (response.ok) {
+        setNewEntry(await response.json())
+      }
+    }
+    fetchEntry()
+  }, [id])
 
   function handleName(event: React.ChangeEvent<HTMLInputElement>) {
     const newNameText = event.target.value
@@ -44,17 +40,33 @@ export function AddEntry() {
     setNewEntry(updatedEntry)
   }
 
-  function handleType(event: any) {
+  function handleType(event: React.ChangeEvent<HTMLSelectElement>) {
     const newType = event.target.value
 
     const updatedEntry = { ...newEntry, type: newType }
     setNewEntry(updatedEntry)
   }
 
-  async function handleSubmit(event: any) {
+  async function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
 
-    createEntry.mutate(newEntry)
+    const response = await fetch(`/api/BakeriesAndCoffeeShops/${newEntry.id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newEntry),
+    })
+
+    {
+      if (response.status === 400) {
+        await response.json()
+      } else {
+        history.push('/')
+      }
+    }
+  }
+
+  if (!newEntry.id) {
+    return <></>
   }
 
   return (
@@ -93,7 +105,7 @@ export function AddEntry() {
           <option value="Both">Both</option>
         </select>
         <button className="entrybutton">
-          Add a picture of the store front
+          Update picture of the store front
         </button>
         <button onClick={handleSubmit} className="entrybutton">
           Finished

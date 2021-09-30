@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { BakeryAndCoffeeShopType } from '../types'
 
@@ -22,6 +22,20 @@ const NullEntry: BakeryAndCoffeeShopType = {
 }
 
 export function SingleEntry() {
+  const history = useHistory()
+
+  async function handleDelete(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/BakeriesAndCoffeeShops/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
+    })
+    if (response.status === 200 || response.status === 204) {
+      history.push('/')
+    }
+  }
+
   const { id } = useParams<{ id: string }>()
 
   const { data: entry = NullEntry } = useQuery<BakeryAndCoffeeShopType>(
@@ -51,31 +65,18 @@ export function SingleEntry() {
                 <p>{entry.name}</p>
                 <p>{entry.city}</p>
                 <p>{entry.type}</p>
-                <button>Add image</button>
               </div>
             </div>
             <div className="directionsandshare">
               <button>Directions</button>
-              <button>Share</button>
             </div>
           </div>
-          <div className="entryimages">
-            <img
-              className="singleentrypageimage"
-              src="../src/images/simple-house-icon.png"
-            />
-            <img
-              className="singleentrypageimage"
-              src="../src/images/simple-house-icon.png"
-            />
-            <img
-              className="singleentrypageimage"
-              src="../src/images/simple-house-icon.png"
-            />
-          </div>
+
           <nav className="updatedelete">
-            <button>Update</button>
-            <button>Delete</button>
+            <Link to={`/update/${entry.id}`}>
+              <button>Update</button>
+            </Link>
+            <button onClick={handleDelete}>Delete</button>
           </nav>
         </div>
       </main>
