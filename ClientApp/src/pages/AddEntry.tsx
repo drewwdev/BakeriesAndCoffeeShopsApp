@@ -92,9 +92,8 @@ export function AddEntry() {
           <option value="Coffee Shop">Coffee Shop</option>
           <option value="Both">Both</option>
         </select>
-        <button className="entrybutton">
-          Add a picture of the store front
-        </button>
+        <label>Add a picture of the store front</label>
+        <input type="file" className="fileupload"></input>
         <button onClick={handleSubmit} className="entrybutton">
           Finished
         </button>

@@ -30,7 +30,7 @@ export function ViewAll() {
       </div>
       <div className="viewalldiv">
         <main className="viewallmain">
-          Type a name, city or type to filter
+          Type a name, address or type to filter
           <input
             type="search"
             value={filterText}
