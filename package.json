@@ -1,8 +1,4 @@
 {
   "name": "BakeriesAndCoffeeShopsApp",
-  "private": "true",
-  "dependencies": {
-    "react-query": "^3.24.4",
-    "react-router-dom": "^5.3.0"
-  }
+  "private": "true"
 }
