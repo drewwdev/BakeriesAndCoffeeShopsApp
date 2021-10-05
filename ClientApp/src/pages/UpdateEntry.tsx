@@ -1,11 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { BakeryAndCoffeeShopType } from '../types'
 
+async function loadEntry(id: string) {
+  const response = await fetch(`/api/BakeriesAndCoffeeShops/${id}`)
+
+  if (response.ok) {
+    return response.json()
+  } else {
+    throw await response.json()
+  }
+}
+
+async function submitUpdatedEntry(entryToUpdate: BakeryAndCoffeeShopType) {
+  const response = await fetch(
+    `/api/BakeriesAndCoffeeShops/${entryToUpdate.id}`,
+    {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(entryToUpdate),
+    }
+  )
+  return response.json()
+}
+
 export function UpdateEntry() {
-  const { id } = useParams<{ id: string }>()
   const history = useHistory()
+  const { id } = useParams<{ id: string }>()
+
+  useQuery<BakeryAndCoffeeShopType>(['one-entry', id], () => loadEntry(id), {
+    onSuccess: function (entryBeingLoaded) {
+      setNewEntry(entryBeingLoaded)
+    },
+  })
 
   const [newEntry, setNewEntry] = useState<BakeryAndCoffeeShopType>({
     id: undefined,
@@ -15,16 +46,14 @@ export function UpdateEntry() {
     mainImage: '',
   })
 
-  useEffect(() => {
-    async function fetchEntry() {
-      const response = await fetch(`/api/BakeriesAndCoffeeShops/${id}`)
-
-      if (response.ok) {
-        setNewEntry(await response.json())
-      }
-    }
-    fetchEntry()
-  }, [id])
+  const updateTheEntry = useMutation(submitUpdatedEntry, {
+    onSuccess: function () {
+      history.push('/')
+    },
+    onError: function () {
+      console.log('that didnt work')
+    },
+  })
 
   function handleName(event: React.ChangeEvent<HTMLInputElement>) {
     const newNameText = event.target.value
@@ -47,23 +76,39 @@ export function UpdateEntry() {
     setNewEntry(updatedEntry)
   }
 
-  async function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
-    event.preventDefault()
+  async function uploadFile(fileToUpload: any) {
+    const formData = new FormData()
+    formData.append('file', fileToUpload)
 
-    const response = await fetch(`/api/BakeriesAndCoffeeShops/${newEntry.id}`, {
-      method: 'PUT',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(newEntry),
+    const response = await fetch('/api/Uploads', {
+      method: 'POST',
+      body: formData,
     })
-
-    {
-      if (response.status === 400) {
-        await response.json()
-      } else {
-        history.push('/')
-      }
+    if (response.ok) {
+      return response.json()
+    } else {
+      throw 'Unable to upload image!'
     }
   }
+
+  function onFileSelect(acceptedFiles: any) {
+    const fileToUpload = acceptedFiles[0]
+
+    uploadFileMutation.mutate(fileToUpload)
+  }
+
+  type UploadResponse = {
+    url: string
+  }
+
+  const uploadFileMutation = useMutation(uploadFile, {
+    onSuccess: function (apiResponse: UploadResponse) {
+      const url = apiResponse.url
+
+      const updatedEntry = { ...newEntry, mainImage: url }
+      setNewEntry(updatedEntry)
+    },
+  })
 
   if (!newEntry.id) {
     return <></>
@@ -104,10 +149,18 @@ export function UpdateEntry() {
           <option value="Coffee Shop">Coffee Shop</option>
           <option value="Both">Both</option>
         </select>
-        <button className="entrybutton">
-          Update picture of the store front
-        </button>
-        <button onClick={handleSubmit} className="entrybutton">
+        <label> Update picture of the store front</label>
+        <input
+          type="file"
+          onChange={(file) => onFileSelect(file.target.files)}
+          className="fileupload"
+        ></input>
+        <button
+          onClick={() => {
+            updateTheEntry.mutate(newEntry)
+          }}
+          className="entrybutton"
+        >
           Finished
         </button>
       </div>

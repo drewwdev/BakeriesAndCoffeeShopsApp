@@ -55,10 +55,7 @@ export function SingleEntry() {
       </div>
       <main>
         <div className="singleentry">
-          <img
-            className="singleentrypageimage"
-            src="../src/images/simple-house-icon.png"
-          />
+          <img className="singleentrypageimage" src={entry.mainImage} />
           <div className="shop">
             <div className="entryinfo">
               <div>

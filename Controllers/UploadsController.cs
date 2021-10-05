@@ -13,7 +13,7 @@ namespace TacoTuesday.Controllers
 {
     // All of these routes will be at the base URL:     /api/Uploads
     // That is what "api/[controller]" means below. It uses the name of the controller
-    // in this case EntryController to determine the URL
+    // in this case UploadsController to determine the URL
     [Route("api/[controller]")]
     [ApiController]
     public class UploadsController : ControllerBase
@@ -35,16 +35,12 @@ namespace TacoTuesday.Controllers
         //
         // Creates a new uploaded file
         //
-        // The `body` of the request is parsed and then made available to us as a User
-        // variable named user. The controller matches the keys of the JSON object the client
-        // supplies to the names of the attributes of our User POCO class. This represents the
-        // new values for the record.
         //
         [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [RequestSizeLimit(10_000_000)]
         public async Task<ActionResult> Upload(IFormFile file)
         {
+
             // Create and configure a client object to be able to upload to Cloudinary
             var cloudinaryClient = new Cloudinary(new Account(CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET));
 

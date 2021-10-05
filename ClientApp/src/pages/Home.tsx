@@ -54,7 +54,7 @@ export function Home() {
                     <div className="shopinfo">
                       <img
                         className="mainimage"
-                        src="../src/images/simple-house-icon.png"
+                        src={bakeryAndCoffeeShop.mainImage}
                       />
                       <div>
                         <p>{bakeryAndCoffeeShop.name}</p>

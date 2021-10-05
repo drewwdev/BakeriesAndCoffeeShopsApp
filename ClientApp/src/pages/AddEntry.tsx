@@ -14,6 +14,21 @@ async function submitNewEntry(entryToCreate: BakeryAndCoffeeShopType) {
   return response.json()
 }
 
+async function uploadFile(fileToUpload: any) {
+  const formData = new FormData()
+  formData.append('file', fileToUpload)
+
+  const response = await fetch('/api/Uploads', {
+    method: 'POST',
+    body: formData,
+  })
+  if (response.ok) {
+    return response.json()
+  } else {
+    throw 'Unable to upload image!'
+  }
+}
+
 export function AddEntry() {
   const [newEntry, setNewEntry] = useState<BakeryAndCoffeeShopType>({
     id: undefined,
@@ -44,19 +59,36 @@ export function AddEntry() {
     setNewEntry(updatedEntry)
   }
 
+  function handleSubmit(event: any) {
+    event.preventDefault()
+
+    createEntry.mutate(newEntry)
+  }
+
+  function onFileSelect(acceptedFiles: any) {
+    const fileToUpload = acceptedFiles[0]
+
+    uploadFileMutation.mutate(fileToUpload)
+  }
+
+  type UploadResponse = {
+    url: string
+  }
+  const uploadFileMutation = useMutation(uploadFile, {
+    onSuccess: function (apiResponse: UploadResponse) {
+      const url = apiResponse.url
+
+      const updatedEntry = { ...newEntry, mainImage: url }
+      setNewEntry(updatedEntry)
+    },
+  })
+
   function handleType(event: any) {
     const newType = event.target.value
 
     const updatedEntry = { ...newEntry, type: newType }
     setNewEntry(updatedEntry)
   }
-
-  async function handleSubmit(event: any) {
-    event.preventDefault()
-
-    createEntry.mutate(newEntry)
-  }
-
   return (
     <div className="addentrymain">
       <header className="mainheader">
@@ -93,7 +125,11 @@ export function AddEntry() {
           <option value="Both">Both</option>
         </select>
         <label>Add a picture of the store front</label>
-        <input type="file" className="fileupload"></input>
+        <input
+          onChange={(file) => onFileSelect(file.target.files)}
+          type="file"
+          className="fileupload"
+        ></input>
         <button onClick={handleSubmit} className="entrybutton">
           Finished
         </button>
