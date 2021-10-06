@@ -6,6 +6,7 @@ import { Home } from './pages/Home'
 import { SingleEntry } from './pages/SingleEntry'
 import { UpdateEntry } from './pages/UpdateEntry'
 import { ViewAll } from './pages/ViewAll'
+import github from '../src/images/Octicat.svg'
 
 export function App() {
   return (
@@ -29,7 +30,7 @@ export function App() {
       </Switch>
       <footer>
         <a href="https://github.com/drewwdev">
-          <img className="github" src="../src/images/Octicat.svg" />
+          <img className="github" src={github} />
         </a>
       </footer>
     </div>
