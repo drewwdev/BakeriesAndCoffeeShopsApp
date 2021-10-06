@@ -65,7 +65,9 @@ export function SingleEntry() {
               </div>
             </div>
             <div className="directionsandshare">
-              <button>Directions</button>
+              <a href="https://www.google.com/maps/dir/Suncoast+Developers+Guild,+Central+Avenue,+St.+Petersburg,+FL/Black+Crow+Coffee+Co+Grand+Central+Dist,+2157+1st+Ave+S,+St.+Petersburg,+FL+33712/@27.7706147,-82.6654428,17z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x88c2e33e008e4721:0x60b583b64463d4bb!2m2!1d-82.6636471!2d27.7708983!1m5!1m1!1s0x88c2e36cd12fc9e3:0xe445edec127315b3!2m2!1d-82.662845!2d27.7703285!3e2">
+                <button>Directions</button>
+              </a>
             </div>
           </div>
 
